@@ -1,0 +1,22 @@
+For session: 
+
+GET   /api/session      Login
+DELETE /api/session  (Auth)   Detete the session(Log Out)
+
+
+For users:
+
+POST  /api/users/new    Register a user     
+GET   /api/users/:id  (Auth)  Get a user details
+PUT   /api/users/:id  (Auth)  Update a user details 
+
+
+For Blogs: 
+
+POST  /api/blogs/new  (Auth)  Create a new blog
+PUT   /api/blogs/:id   (Auth) Update a blog 
+POST  /api/blogs/:id/comments/new (Auth)  Add a new comment 
+PUT   /api/blogs/:id/comments/:comment-id  (Auth) Update comment 
+GET   /api/blogs        Get blogs : pass filter parameters 
+GET   /api/blogs/:id    Get a blog by id 
+
