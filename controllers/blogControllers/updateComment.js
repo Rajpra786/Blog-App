@@ -1,25 +1,35 @@
-const Blog  =  require("../../models/blog");
+const {Blog}  =  require("../../models/blog");
 
 module.exports = async(req, res) => {
-    await findOne({'_id': mongoose.Types.ObjectId(req.body.data.id)}, (err, blog) => {
+    await Blog.findById(req.params.id, (err, blog) => {
         if (!blog) {
             return res.status(404).json({
                 success: false,
                 message: 'blog not found!'
             });
         } else {
-            for(var i in blog.comments)
+
+            for(var index in blog.comments)
             {
-                if(req.body.data.commentId == blog.comments[i]._id)
+                if(req.params.commentid == blog.comments[index]._id)
                 {
-                    blog.comments[i].description = req.body.data.description;
+                    if(req.user._id.toString() == blog.comments[index].author.toString())
+                        blog.comments[index].message = req.body.message;
+                    else{
+                        return res.status(403).json({
+                            success:false,
+                            message:'Not authorized to edit this comment!'
+                        })
+                    }
+                    break;
+
                 }
             }
             
             blog.save().then(()=>{
                 return res.status(200).json({
                     success: true,
-                    message: 'Successfully Added'
+                    message: 'Successfully updated'
                 })
             })
             .catch((er=>{

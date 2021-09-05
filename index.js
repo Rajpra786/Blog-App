@@ -4,6 +4,7 @@ const mongoose     = require('mongoose');
 const cookieParser = require('cookie-parser');
 const cors         = require("cors");
 const expressSession = require("express-session");
+const morgan = require("morgan");
 
 const userRoutes = require("./controllers/userControllers/userRoutes");
 const blogRoutes = require("./controllers/blogControllers/blogRoutes");
@@ -18,12 +19,15 @@ app.use((req, res, next) => {
     res.header('Access-Control-Allow-Origin', '*');
     next();
 });
-
+app.use(morgan("dev"));
 // to allow sessions
 app.use(expressSession({
     secret:process.env.KEY,
     store: new expressSession.MemoryStore(), 
-    expires: new Date(Date.now() + (30 * 86400 * 1000))
+    maxAge: 2 * 60 * 60 * 1000, // 2 hr
+    resave: true,
+    //secure: true, only works with https https://github.com/expressjs/session#options
+    saveUninitialized: true
 }));
 
 app.use(cors());
@@ -36,7 +40,8 @@ mongoose.Promise = global.Promise
 mongoose.connect(process.env.Mongo_URI, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
-    useCreateIndex: true
+    useCreateIndex: true,
+    useFindAndModify:false
 }).then(()=>{
     console.log("Connected to atlas!");
 }).catch((err)=>{

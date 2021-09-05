@@ -14,7 +14,7 @@ const commentSchema = mongoose.Schema(
         avatar:{
             type:String
         },
-        body:{
+        message:{
             type:String,
             maxlength:200
         }
@@ -52,7 +52,9 @@ const blogSchema = mongoose.Schema(
             maxlength:300
         },
         image:{
-            type:String
+            location:{type:String},
+            key: {type:String},
+            originalname:{type:String}
         },
         comments:[
             {

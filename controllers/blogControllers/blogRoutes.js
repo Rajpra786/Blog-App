@@ -21,7 +21,7 @@ module.exports = (function(){
   router.post('/new',auth, createBlog);
   router.put('/:id',auth, updateBlog);
   router.post('/:id/comments/new',auth, addComment);
-  router.put('/:id/comments/:comment-id',auth,updateComment);
+  router.put('/:id/comments/:commentid',auth,updateComment);
   router.get('/',getBlogs);
   router.get('/:id',getBlogById);
   

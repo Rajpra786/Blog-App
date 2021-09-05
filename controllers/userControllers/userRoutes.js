@@ -11,7 +11,7 @@ module.exports = (function(){
 
   //session
   router.post('/session',login);
-  router.delete('/session', auth, logout);
+  router.delete('/session', logout);
 
   //for users 
   router.post('/new', register);

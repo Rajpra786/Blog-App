@@ -1,3 +1,9 @@
+/*
+    Requirements: user should be loggen in 
+    Manual parameters: No parameters needed 
+
+*/
+
 module.exports = (req,res)=>{
     const user = req.user;
     return res.status(200).send({

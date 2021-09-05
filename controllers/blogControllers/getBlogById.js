@@ -1,9 +1,8 @@
-const Blog  =  require("../../models/blog");
+const {Blog}  =  require("../../models/blog");
 
 module.exports = async(req, res) => {
-    var b_id = req.params.id;
-    await Blog.findOne({'_id': mongoose.Types.ObjectId(b_id)}, (err, blog) => {
-        if (!blog) {
+    await Blog.findById(req.params.id, (err, blog) => {
+        if (err) {
             return res.status(404).json({
                 success: false,
                 message: 'blog not found!'

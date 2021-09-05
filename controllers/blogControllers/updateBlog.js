@@ -1,41 +1,40 @@
-const Blog = require("../../models/blog");
+module.exports = async (req, res) => {
+    const {Blog} = require("../../models/blog");
 
-module.exports = async(req, res) => {
-    await Blog.findById(mongoose.Types.ObjectId(req.body.data.id), (err, blog) => {
-        if (!blog) {
+    await Blog.findById(req.params.id, (err,blog) => {
+        if (err) {
             return res.status(404).json({
                 success: false,
-                message: 'blog Not found!'
+                message: err.message
             });
         } else {
-            if(req.body.data.title)
-                blog.title=req.body.data.title;
             
-            if(req.body.data.description)
-                blog.description=req.body.data.description;
-            
-            if(req.body.data.content){
-                blog.content=req.body.data.content;
-            }
-             
-            if(req.body.data.images){
-                blog.images = req.body.data.images;
-            }
-
-            if(req.body.data.tags){
-                blog.tags = req.body.data.tags;
-            }
-
-            if(req.body.data.comments)
+            if(req.user._id.toString() != blog.author.toString())
             {
-                var mem = blog.comments.concat(req.body.data.comments);
-                blog.comments = mem.filter((item,pos)=>mem.indexOf(item)===pos);
+                return res.status(403).json({
+                    success:false,
+                    message:'Not authorized to edit this blog!'
+                })
+            }
+
+            if(req.body.title)
+                blog.title=req.body.title;
+            
+            if(req.body.description)
+                blog.description=req.body.description;
+            
+            if(req.body.content){
+                blog.content=req.body.content;
+            }
+            
+            if(req.body.tags){
+                blog.tags = req.body.tags;
             }
 
             blog.save().then((response)=>{
                 return res.status(200).json({
                     success: true,
-                    message: req.body.data
+                    message: response
                 })
             }).catch((err)=>{
                 console.log(err);
