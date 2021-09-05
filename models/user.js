@@ -1,5 +1,4 @@
 const mongoose = require('mongoose');
-const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const findByToken = require('./helpers/findByToken');
 const generateToken = require('./helpers/generateToken');
@@ -38,10 +37,7 @@ const userSchema = mongoose.Schema({
     ],
     posts:[
         { type: mongoose.Schema.Types.ObjectId, ref: 'Post' }
-    ],
-    token:{
-        type:String
-    }
+    ]
 },
 {
     timestamps: true
@@ -54,10 +50,10 @@ userSchema.pre('save', encrypt);
 userSchema.methods.comparePassword = comparePassword;
 
 //for generating token when loggedin
-userSchema.methods.generateToken = generateToken;
+// userSchema.methods.generateToken = generateToken;
 
 //validating token for auth routes middleware
-userSchema.statics.findByToken = findByToken;
+// userSchema.statics.findByToken = findByToken;
 
 const User = mongoose.model('User', userSchema);
 module.exports = { User }
