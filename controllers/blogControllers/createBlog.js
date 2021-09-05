@@ -1,6 +1,6 @@
-import Blog from "../../models/blog";
+const Blog = require("../../models/blog");
 
-export default async (req, res) => {
+module.exports = async (req, res) => {
     const blog = new Blog(req.body);
     
     await blog.save((err, doc) => {

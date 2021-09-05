@@ -1,7 +1,7 @@
-import { findById } from "../../models/blog";
+const Blog = require("../../models/blog");
 
-export default async(req, res) => {
-    await findById(mongoose.Types.ObjectId(req.body.data.id), (err, blog) => {
+module.exports = async(req, res) => {
+    await Blog.findById(mongoose.Types.ObjectId(req.body.data.id), (err, blog) => {
         if (!blog) {
             return res.status(404).json({
                 success: false,

@@ -15,6 +15,7 @@ module.exports = async (req, res) => {
             });
         }
         else{
+            console.log(err);
             return res.status(409).json({
                 errors: err,
                 msg:"Something went wrong!"

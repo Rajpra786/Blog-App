@@ -1,4 +1,4 @@
-import Blog from "../../models/blog";
+const Blog  =  require("../../models/blog");
 
 module.exports = async (req, res) => {
     var blogs=[];

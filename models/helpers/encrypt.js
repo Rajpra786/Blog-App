@@ -1,3 +1,5 @@
+const bcrypt = require('bcrypt');
+const SALT = 10;
 module.exports = function (next) {
     var user = this;
     

@@ -1,11 +1,10 @@
 const mongoose = require('mongoose');
-const jwt = require('jsonwebtoken');
 const findByToken = require('./helpers/findByToken');
 const generateToken = require('./helpers/generateToken');
 const encrypt = require('./helpers/encrypt');
 const comparePassword = require('./helpers/comparePassword');
 
-const SALT = 10;
+
 require("dotenv").config();
 
 const userSchema = mongoose.Schema({

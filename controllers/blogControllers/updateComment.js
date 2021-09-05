@@ -1,6 +1,6 @@
-import { findOne } from "../../models/blog";
+const Blog  =  require("../../models/blog");
 
-module.exports = (req, res) => {
+module.exports = async(req, res) => {
     await findOne({'_id': mongoose.Types.ObjectId(req.body.data.id)}, (err, blog) => {
         if (!blog) {
             return res.status(404).json({

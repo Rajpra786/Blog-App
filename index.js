@@ -5,8 +5,10 @@ const cookieParser = require('cookie-parser');
 const cors         = require("cors");
 const expressSession = require("express-session");
 
-const app = express();
+const userRoutes = require("./controllers/userControllers/userRoutes");
+const blogRoutes = require("./controllers/blogControllers/blogRoutes");
 
+const app = express();
 require('dotenv').config();   // include configurations 
 const PORT = process.env.PORT || 8081;
 
@@ -29,13 +31,6 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 app.use(cookieParser());
   
-//Routes 
-app.get('/',(req,res)=>{
-    res.end("Basic Setup is ready!");
-});
-
-
-
 // Make connection with the MongoDB atlas
 mongoose.Promise = global.Promise
 mongoose.connect(process.env.Mongo_URI, {
@@ -48,6 +43,17 @@ mongoose.connect(process.env.Mongo_URI, {
     console.log("Index.js: line 20: ");
     console.log(err);
 })
+
+
+
+//Routes 
+app.get('/',(req,res)=>{
+    res.send('<h1>Hello Duniya!</h1>');
+})
+
+app.use('/api/users/',userRoutes);
+app.use('/api/blogs/',blogRoutes);
+
 
 // Start Server
 app.listen(PORT, () => {

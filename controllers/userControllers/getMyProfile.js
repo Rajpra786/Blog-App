@@ -1,4 +1,5 @@
-exports.getMyProfile = (req,res)=>{
+module.exports = (req,res)=>{
+    const user = req.user;
     return res.status(200).send({
         email:user.email,
         name:user.name,
