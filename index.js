@@ -8,6 +8,7 @@ const morgan = require("morgan");
 
 const userRoutes = require("./controllers/userControllers/userRoutes");
 const blogRoutes = require("./controllers/blogControllers/blogRoutes");
+const commentRoutes = require("./controllers/commentControllers/commentRoutes");
 
 const app = express();
 require('dotenv').config();   // include configurations 
@@ -58,7 +59,7 @@ app.get('/',(req,res)=>{
 
 app.use('/api/users/',userRoutes);
 app.use('/api/blogs/',blogRoutes);
-
+app.use('/api/comments/',commentRoutes);
 
 // Start Server
 app.listen(PORT, () => {

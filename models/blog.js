@@ -1,29 +1,6 @@
 const mongoose = require('mongoose');
 require("dotenv").config();
 
-const commentSchema = mongoose.Schema(
-    {
-        author:{
-            type: mongoose.Schema.Types.ObjectId, 
-            ref: 'User',
-            required:[true,"Unknown user!"]
-        },
-        name:{
-            type:String
-        },
-        avatar:{
-            type:String
-        },
-        message:{
-            type:String,
-            maxlength:200
-        }
-    },
-    {
-        timestamps: true
-    }
-);
-
 const blogSchema = mongoose.Schema(
     {
         author:{
@@ -56,11 +33,14 @@ const blogSchema = mongoose.Schema(
             key: {type:String},
             originalname:{type:String}
         },
-        comments:[
-            {
-                type:commentSchema
-            }
-        ],
+        comments_enabled:{
+            type:Boolean, 
+            default:true
+        },
+        comments:{
+            type: mongoose.Schema.Types.ObjectId, 
+            ref: 'Comments'
+        },
         tags:[
             {
                 type:String
