@@ -1,7 +1,9 @@
-export const dark = {
-    textHead: '#ffffff',
-    textNormal:'#fcf7fc',
-    
-    background: '#474242',
-    cardBackground:'#000000'
-}
+import {createTheme } from '@mui/material/styles';
+
+const darkTheme = createTheme({
+	palette: {
+	  mode: 'dark',
+	},
+});
+
+export default darkTheme;

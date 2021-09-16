@@ -1,10 +1,9 @@
-export const light = {
-    textHead: '#000000',
-    textNormal:'#474242',
-    
-    background: '#fcf7fc',
-    cardBackground:'#ffffff'
-}
+import {createTheme } from '@mui/material/styles';
 
+const lightTheme = createTheme({
+	palette: {
+	  mode: 'light',
+	},
+});
 
-
+export default lightTheme;
