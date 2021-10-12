@@ -3,7 +3,7 @@ import Get from '../../Requests/Get';
 import { Grid, Paper, Typography, ButtonBase } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import { UserContext } from '../../Context/UserContext';
-import { withRouter, Link } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import { EditButton } from '../../Components/Buttons/Buttons';
 import { ProfileBar } from './ProfileBar';
 
