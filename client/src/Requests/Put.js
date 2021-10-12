@@ -1,16 +1,17 @@
 import axios from "axios";
 
-//endpoint will look like /users/session
-module.exports =  (data, endpoint,setLoading) =>{
-    axios.put(endpoint, data)
+const baseUrl = '/api'
+// http://127.0.0.1:8081
+const Post = (data, endpoint) =>{
+    return new Promise((resolve,reject)=>{
+      axios.put(baseUrl+endpoint, data)
       .then(function (response) {
-        console.log(response);
-        setLoading(false);
-        return response;  
+        resolve(response.data);  
       })
       .catch(function (error) {
-        console.log(error);
-        setLoading(false);
-        return error;
+        reject(error);
       });
+    })
 }
+
+export default Post;

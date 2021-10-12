@@ -5,7 +5,6 @@ const Get = (endpoint) =>{
     return new Promise((resolve,reject)=>{
       axios.get(baseUrl+endpoint)
       .then(function (response) {
-        console.log(response);
         resolve(response.data);  
       })
       .catch(function (error) {

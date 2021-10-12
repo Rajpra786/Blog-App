@@ -1,16 +1,17 @@
 import axios from "axios";
 
-//endpoint will look like /users/session
-module.exports =  (data, endpoint,setLoading) =>{
-    axios.delete(endpoint, data)
+const baseUrl = '/api'
+const Delete = (endpoint) =>{
+    return new Promise((resolve,reject)=>{
+      axios.delete(baseUrl+endpoint)
       .then(function (response) {
         console.log(response);
-        setLoading(false);
-        return response;  
+        resolve(response.data);  
       })
       .catch(function (error) {
-        console.log(error);
-        setLoading(false);
-        return error;
+        reject(error);
       });
+    })
 }
+
+export default Delete;
