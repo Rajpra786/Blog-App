@@ -4,6 +4,11 @@ const darkTheme = createTheme({
 	palette: {
 	  mode: 'dark',
 	},
+	typography: {
+		fontFamily: [
+		  'Serif'
+		].join(','),
+	  }
 });
 
 export default darkTheme;
