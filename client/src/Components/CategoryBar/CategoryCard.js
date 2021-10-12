@@ -3,7 +3,7 @@ import { useTheme} from '@mui/material/styles';
 import { Card,Typography,Avatar,Grid} from '@mui/material';
 import {Link} from "react-router-dom";
 
-const cardStyles = {
+const cardStyles =(theme) => ({
     width:'40vh',
     overflow: 'hidden',
     position: 'relative',
@@ -39,13 +39,13 @@ const cardStyles = {
     '&:active':{
         transform: 'scale(1.01) translateY(0.5vh)'
     }
-};
+});
 
 const CategoryCard = props => {
     const theme = useTheme();
 
 	return  <Link to={props.url} style={{ textDecoration: 'none'}}>
-        <Card sx={cardStyles}>
+        <Card sx={cardStyles(theme)}>
             <Grid container direction="column" alignItems="center">
                 <Grid item>
                     <Avatar variant="rounded"
