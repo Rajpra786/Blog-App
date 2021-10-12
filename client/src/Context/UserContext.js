@@ -1,33 +1,72 @@
-import React, {createContext, useState} from "react";
-import Post from '../Requests/Post';
+import React, { createContext } from "react";
+import Get from '../Requests/Get';
+import Delete from '../Requests/Delete';
+
 export const UserContext = createContext();
 
-const UserContextProvider = props => {
-    const [user, setUser] = useState({});
+class UserContextProvider extends React.Component {
+  constructor(props) {
+    super(props);
 
-    const logout = () => {
-        console.log("Logout");
-        setUser({});
-    };
-
-    const login = Credential =>{
-        const data = {
-            email:Credential.email,
-            password:Credential.password
-        }
-        Post(data,'/users/session').then((userData)=>{
-          setUser(userData.user);
-        }).catch((error)=>{
-          console.log(error);
-        })
+    this.state = {
+      isAuth: false,
+      loginModel: false,
+      userId: ''
     }
-    
-    return (
-      <UserContext.Provider value={{user, login,logout}}>
-        {props.children}
-      </UserContext.Provider>
-    );
+    this.logout = this.logout.bind(this);
+    this.login = this.login.bind(this);
+    this.openLogin = this.openLogin.bind(this);
+    this.closeLogin = this.closeLogin.bind(this);
+  }
+
+  componentDidMount() {
+    Get('/users/my')
+      .then((res) => {
+        this.login(res.userId);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
+
+  logout = () => {
+    this.setState({ isAuth: false, userId: '' });
+    Delete('/users/session')
+      .then((res) => {
+        console.log("User Logged out");
+      })
+      .catch((err) => {
+        console.log("Something went wrong");
+      })
   };
 
-  
-  export default UserContextProvider;
+  login = (id) => {
+    this.setState({ isAuth: true, userId: id });
+  }
+
+  openLogin = () => {
+    this.setState({ loginModel: true });
+  }
+
+  closeLogin = () => {
+    this.setState({ loginModel: false });
+  }
+
+  render() {
+    return (
+      <UserContext.Provider value={{
+        isAuth: this.state.isAuth,
+        userId: this.state.userId,
+        loginModel: this.state.loginModel,
+        login: this.login,
+        logout: this.logout,
+        openLogin: this.openLogin,
+        closeLogin: this.closeLogin
+      }}>
+        {this.props.children}
+      </UserContext.Provider>
+    );
+  }
+};
+
+export default UserContextProvider;
