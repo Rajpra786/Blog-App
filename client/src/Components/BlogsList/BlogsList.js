@@ -119,7 +119,7 @@ class BlogsList extends React.Component {
 												author={value.name}
 												date={dateFormat(value.updatedAt, "mmmm dS, yyyy")}
 												readTime="2 min"
-												userUrl="/"
+												authorUrl="/"
 												poster={value.image}
 											/>
 										</Paper>
