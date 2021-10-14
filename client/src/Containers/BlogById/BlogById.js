@@ -41,7 +41,7 @@ class BlogById extends React.Component {
 					tags: res.data.tags,
 					lastUpdated:
 						"Last updated: " + dateFormat(res.data.updatedAt, "mmmm dS, yyyy"),
-					readTime: Math.round(res.data.content.split(" ").length / 200),
+					readTime: res.data.readTime ? res.data.readTime : 2,
 				});
 			})
 			.catch((err) => {
