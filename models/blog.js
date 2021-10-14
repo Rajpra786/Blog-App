@@ -8,12 +8,6 @@ const blogSchema = mongoose.Schema(
             ref: 'User',
             required:[true,"Unknown user!"]
         },
-        name:{
-            type:String
-        },
-        avatar:{
-            type:String
-        },
         title:{
             type:String,
             required:[true,"Title can not be empty!"],
@@ -21,17 +15,14 @@ const blogSchema = mongoose.Schema(
         },
         content:{
             type:mongoose.Schema.Types.Mixed,
-            maxlength:5000,
-            required: [true, "Blog can not be empty"]
+            default:'<p>Start Writing</p>',
         },
         description:{
             type:String, 
-            maxlength:300
+            maxlength:200
         },
         image:{
-            location:{type:String},
-            key: {type:String},
-            originalname:{type:String}
+            type:String
         },
         comments_enabled:{
             type:Boolean, 
