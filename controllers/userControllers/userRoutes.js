@@ -16,7 +16,7 @@ module.exports = (function(){
   //for users 
   router.post('/new', register);
   router.get('/my',auth,getMyProfile);
-  router.get('/:id', auth, getPublicProfile);
+  router.get('/:id', getPublicProfile);
   router.put('/:id', auth, updateProfile);
 
   return router;
