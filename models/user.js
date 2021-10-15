@@ -1,5 +1,6 @@
 const encrypt = require("./helpers/encrypt");
 const comparePassword = require("./helpers/comparePassword");
+const mongoose = require("mongoose");
 
 require("dotenv").config();
 

@@ -8,9 +8,6 @@ const commentSchema = mongoose.Schema(
 			ref: "User",
 			required: [true, "Unknown user!"],
 		},
-		name: {
-			type: String,
-		},
 		message: {
 			type: String,
 			maxlength: 200,
