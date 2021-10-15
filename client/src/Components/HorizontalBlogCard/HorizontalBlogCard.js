@@ -74,6 +74,7 @@ const HorizontalBlogCard = (props) => {
 						<UserDetails
 							author={props.author}
 							date={props.date}
+							avatar={props.avatar}
 							readTime={props.readTime}></UserDetails>
 					</Link>
 				</Box>
