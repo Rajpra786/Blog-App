@@ -6,9 +6,9 @@ export function BlogContent(props) {
 	return (
 		<Paper
 			sx={{
-				width: "71vw",
+				width: "68vw",
 				ml: "2vw",
-				mr: "0vw",
+				mr: "1vw",
 				p: "2vw",
 				border: "none",
 				fontSize: "120%",

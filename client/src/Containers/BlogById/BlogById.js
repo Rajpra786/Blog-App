@@ -45,7 +45,15 @@ class BlogById extends React.Component {
 				});
 			})
 			.catch((err) => {
-				console.log("Something went wrong!");
+				switch (err.message) {
+					case "Request failed with status code 404":
+						this.props.history.push("/NotFound");
+						break;
+					default:
+						this.props.history.push("/");
+						console.log("Something went wrong!");
+						break;
+				}
 			});
 	}
 
@@ -71,7 +79,7 @@ class BlogById extends React.Component {
 
 					<Grid container sx={{ display: "flex", flexDirection: "row" }}>
 						<BlogContent content={this.state.content} />
-						<RightPanel author={this.state.author} />
+						<RightPanel author={this.state.author} tags={this.state.tags} />
 					</Grid>
 				</Grid>
 			</div>
