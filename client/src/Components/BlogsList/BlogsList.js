@@ -2,7 +2,7 @@ import React from "react";
 import { Paper, Typography, Grid, Box } from "@mui/material";
 import dateFormat from "dateformat";
 import Get from "../../Requests/Get";
-import PhotoBlogCard from "../PhotoBlogCard/PhotoBlogCard";
+import VerticalBlogCard from "../VerticalBlogCard/VerticalBlogCard";
 import HorizontalBlogCard from "../HorizontalBlogCard/HorizontalBlogCard";
 import { getTitle } from "./getTitle";
 
@@ -78,7 +78,7 @@ class BlogsList extends React.Component {
 												<Paper
 													key={value._id + this.state.category}
 													sx={{ height: 400, width: 320 }}>
-													<PhotoBlogCard
+													<VerticalBlogCard
 														url={"/blogs/" + value._id}
 														title={value.title}
 														description={
