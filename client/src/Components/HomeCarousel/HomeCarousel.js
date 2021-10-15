@@ -3,8 +3,6 @@ import Slider from "react-slick";
 import CarouselCard from "./CarouselCard";
 import Get from "../../Requests/Get";
 import dateFormat from "dateformat";
-import { Link } from "react-router-dom";
-import { ThemeContext } from "../../Context/ThemeContext";
 
 class HomeCarousel extends Component {
 	constructor(props) {
@@ -13,7 +11,6 @@ class HomeCarousel extends Component {
 			blogs: [],
 		};
 	}
-	static contextType = ThemeContext;
 
 	componentDidMount() {
 		Get("/blogs/?maxcount=5&sort=true")
@@ -26,7 +23,6 @@ class HomeCarousel extends Component {
 	}
 
 	render() {
-		const { theme } = this.context;
 		const settings = {
 			dots: true,
 			lazyLoad: true,
