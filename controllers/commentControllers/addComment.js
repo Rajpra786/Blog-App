@@ -1,6 +1,25 @@
 const { Comments } = require("../../models/comments");
 
 module.exports = async (req, res) => {
+	/*
+		#swagger.tags = ['Comments']
+		#swagger.summary = 'Add Comment'
+        #swagger.description = 'Endpoint to create new comment'
+        
+
+        #swagger.parameters['Comment'] = {
+            in: 'body',
+            description: 'Comment Message',
+            required: true,
+            schema: { 
+                        $message: 'Something about blog'
+                    }
+        }
+        
+        #swagger.security = [{
+               "apiKeyAuth": []
+        }]
+	*/
 	const comment = {
 		message: req.body.message,
 		name: req.user.name,
@@ -13,9 +32,9 @@ module.exports = async (req, res) => {
 		{ $push: { comments: comment } },
 		(err) => {
 			if (err) {
-				return res.status(404).json({
+				return res.status(406).json({
 					success: false,
-					message: "Comment box not found!",
+					message: "Comments Not enabled for this blog!",
 				});
 			} else {
 				return res.status(200).json({
