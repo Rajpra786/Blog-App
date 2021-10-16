@@ -1,6 +1,41 @@
 const { Blog } = require("../../models/blog");
 
 module.exports = async (req, res) => {
+	/*
+		#swagger.tags = ['Blog']
+		#swagger.summary = 'Get All blogs'
+        #swagger.description = 'Endpoint to get all blogs based on query parameters'
+		
+		#swagger.parameters['tag'] = {
+            in: 'query',
+            description: 'blog tag',
+            schema: { 
+						$tag:'science-and-space' 
+                    }
+        }
+		
+		#swagger.parameters['max count'] = {
+            in: 'query',
+            description: 'Maximum number of elements that need to be returned',
+            schema: { 
+						$maxcount:3 
+                    }
+        }
+
+		#swagger.parameters['sort'] = {
+            in: 'query',
+            description: 'Sort or Not sorted',
+            schema: { 
+						$sort:true 
+                    }
+        }
+
+
+		#swagger.security = [{
+               "apiKeyAuth": []
+        }]
+	*/
+
 	var blogs = [];
 	var filters = {};
 	var query = {};

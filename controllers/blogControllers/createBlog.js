@@ -1,6 +1,22 @@
 require("dotenv").config(); // include configurations
 
 module.exports = async (req, res) => {
+	/*
+		#swagger.tags = ['Blog']
+		#swagger.summary = 'Create new blog'
+        #swagger.description = 'Endpoint to create a new blog'
+		#swagger.parameters['Body'] = {
+            in: 'body',
+            description: 'Details for the blog',
+            required: true,
+            schema: { 
+						$ref: '#/definitions/Blog' 
+                    }
+        } 
+		#swagger.security = [{
+               "apiKeyAuth": []
+        }]
+	*/
 	const { Blog } = require("../../models/blog");
 	const { Comments } = require("../../models/comments");
 

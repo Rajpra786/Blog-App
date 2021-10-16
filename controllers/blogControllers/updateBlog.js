@@ -1,4 +1,17 @@
 module.exports = async (req, res) => {
+	/*
+		#swagger.tags = ['Blog']
+		#swagger.summary = 'Update Blog by Id'
+        #swagger.description = 'Endpoint to update a specific blog using id'
+		
+		#swagger.parameters['Values'] = {
+            in: 'body',
+            description: 'Updated Values',
+            schema: { 
+						$ref:'#/definitions/Blog' 
+                    }
+        }
+	*/
 	const { Blog } = require("../../models/blog");
 
 	await Blog.findById(req.params.id, (err, blog) => {

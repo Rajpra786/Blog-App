@@ -15,6 +15,11 @@ const s3 = new aws.S3({
 });
 
 module.exports = async (req, res) => {
+	/*
+		#swagger.tags = ['Other']
+		#swagger.summary = 'Get direct upload link for S3'
+        #swagger.description = 'Endpoint to get a link from S3 which allows direct upload of image to specified location'
+	*/
 	const rawBytes = await randomBytes(16);
 	const imageName = rawBytes.toString("hex") + req.params.imgName;
 
