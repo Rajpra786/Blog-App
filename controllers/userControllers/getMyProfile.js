@@ -4,6 +4,14 @@
 */
 
 module.exports = (req, res) => {
+	/* 	#swagger.tags = ['User']
+		#swagger.summary = 'Get LoggedIn User Details'
+        #swagger.description = 'Endpoint to return loggedIn user details using session token' 
+		#swagger.security = [{
+               "apiKeyAuth": []
+        }]
+	*/
+
 	const user = req.user;
 	return res.status(200).send({
 		email: user.email,

@@ -1,10 +1,10 @@
 const { User } = require("../../models/user");
 
-/*
-	Aim: Used to return user profile
-*/
-
 module.exports = (req, res) => {
+	/* 	#swagger.tags = ['User']
+		#swagger.summary = 'Get User Details By Id'
+        #swagger.description = 'Endpoint to return specific user details using id' 
+	*/
 	User.findById(req.params.id, (err, user) => {
 		if (!user) {
 			return res.status(404).json({
@@ -22,7 +22,6 @@ module.exports = (req, res) => {
 				twitter: user.twitter,
 				website: user.website,
 			};
-			console.log(data);
 			return res.status(200).send(data);
 		}
 	});
