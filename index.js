@@ -55,8 +55,11 @@ mongoose
 		console.log(err);
 	});
 
+var options = {
+	//	customCss: ".swagger-ui .topbar { display: none }",
+};
 app.use(endpoints);
-app.use("/doc", swaggerUi.serve, swaggerUi.setup(swaggerFile));
+app.use("/doc", swaggerUi.serve, swaggerUi.setup(swaggerFile, options));
 
 // Start Server
 app.listen(PORT, () => {
