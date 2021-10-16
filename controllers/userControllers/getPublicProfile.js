@@ -12,7 +12,6 @@ module.exports = (req, res) => {
 				message: err.message,
 			});
 		} else {
-			console.log(user);
 			const data = {
 				name: user.name,
 				description: user.description,
