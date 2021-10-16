@@ -38,8 +38,7 @@ const userSchema = mongoose.Schema(
 		avatar: {
 			type: String,
 		},
-		blogs: [{ type: mongoose.Schema.Types.ObjectId, ref: "Blog" }],
-		posts: [{ type: mongoose.Schema.Types.ObjectId, ref: "Post" }],
+		blogs: [{ type: mongoose.Schema.Types.ObjectId, ref: "Blog" }]
 	},
 	{
 		timestamps: true,
