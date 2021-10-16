@@ -5,6 +5,7 @@ const cookieParser = require("cookie-parser");
 const cors = require("cors");
 const expressSession = require("express-session");
 const morgan = require("morgan");
+const path = require("path");
 
 const endpoints = require("./endpoints");
 const swaggerUi = require("swagger-ui-express");
@@ -12,7 +13,7 @@ const swaggerFile = require("./swagger_output.json");
 
 const app = express();
 require("dotenv").config(); // include configurations
-const PORT = process.env.PORT || 8081;
+const PORT = process.env.PORT || 3000;
 
 // to allow external urls
 app.use((req, res, next) => {
@@ -58,8 +59,13 @@ mongoose
 var options = {
 	//	customCss: ".swagger-ui .topbar { display: none }",
 };
+
 app.use(endpoints);
 app.use("/doc", swaggerUi.serve, swaggerUi.setup(swaggerFile, options));
+app.use(express.static(path.join(__dirname, "client/build")));
+app.get("*", (req, res) => {
+	res.sendFile(path.join(__dirname + "/client/build/index.html"));
+});
 
 // Start Server
 app.listen(PORT, () => {
