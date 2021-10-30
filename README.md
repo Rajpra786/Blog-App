@@ -65,45 +65,45 @@ Check Swagger documentation for API endpoints
 
 ##### User related operations
 
-[x] Get public profile
-[x] Login, logout and Signup
-[x] Update user profile
+- [x]  Get public profile
+- [x] Login, logout and Signup
+- [x] Update user profile
 
 ##### Blog related operations
 
-[x] Create new blog
-[x] Get blog by id
-[x] Get blogs based on filters
-[x] Update blog
+- [x] Create new blog
+- [x] Get blog by id
+- [x] Get blogs based on filters
+- [x] Update blog
 
 ##### Comments related operations
 
-[x] Add comment
-[x] Get comments using blog id
-[x] Update comment
+- [x] Add comment
+- [x] Get comments using blog id
+- [x] Update comment
 
 ##### Other
 
-[x] Get a S3 temporary link to upload image directly
+- [x] Get a S3 temporary link to upload image directly
 
 ### Front-end Side
 
-[x] Home page with responsive elements
-[x] Display a single blog with an id
-[x] Get all blogs
-[x] Get all the blogs of specific category
-[x] Create blog
-[x] Update a blog
-[x] Profile public view
-[x] Update profile
-[x] Update and crop profile photo
-[x] Login, Sign Up, logout
-[x] Dark and light theme
-[-] Add comment-box for any blog(only when user wants to see the comments)
-[-] Edit comment
-[-] Add more themes
-[-] Add docker file
-[-] Add Google Login
+- [x] Home page with responsive elements
+- [x] Display a single blog with an id
+- [x] Get all blogs
+- [x] Get all the blogs of specific category
+- [x] Create blog
+- [x] Update a blog
+- [x] Profile public view
+- [x] Update profile
+- [x] Update and crop profile photo
+- [x] Login, Sign Up, logout
+- [x] Dark and light theme
+- [ ] Add comment-box for any blog(only when user wants to see the comments)
+- [ ] Edit comment
+- [ ] Add more themes
+- [ ] Add docker file
+- [ ] Add Google Login
 
 ## License
 
