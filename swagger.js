@@ -6,10 +6,11 @@ const doc = {
 		title: "Blogger-Bhaiya backend API",
 		description: "This is the documentation for backend server API.",
 	},
-	host: "https://blogger-bhaiya.herokuapp.com",
+	host: "blogger-bhaiya.herokuapp.com",
 	basePath: "/",
 	consumes: ["application/json"],
 	produces: ["application/json"],
+	schemes: ["https"],
 	securityDefinitions: {
 		apiKeyAuth: {
 			type: "apiKey",
