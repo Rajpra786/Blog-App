@@ -3,10 +3,10 @@ const swaggerAutogen = require("swagger-autogen")();
 const doc = {
 	info: {
 		version: "1.0.0",
-		title: "Blog API",
+		title: "Blogger-Bhaiya backend API",
 		description: "This is the documentation for backend server API.",
 	},
-	host: "localhost:8081",
+	host: "https://blogger-bhaiya.herokuapp.com",
 	basePath: "/",
 	consumes: ["application/json"],
 	produces: ["application/json"],
