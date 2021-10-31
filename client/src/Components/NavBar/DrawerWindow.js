@@ -30,7 +30,7 @@ const DrawerWindow = (props) => {
 			<Toolbar>
 				<Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
 					<Link to="/" style={{ textDecoration: "none", color: "#36d117" }}>
-						Blogger Bhaiya
+						Ok-Blogger
 					</Link>
 				</Typography>
 			</Toolbar>

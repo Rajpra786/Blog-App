@@ -84,7 +84,7 @@ const NavBar = (props) => {
 					</IconButton>
 					<Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
 						<Link to="/" style={{ textDecoration: "none", color: "#36d117" }}>
-							Blogger Bhaiya
+							Ok-Blogger
 						</Link>
 					</Typography>
 
