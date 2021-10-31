@@ -42,9 +42,10 @@ const EditProfilePhoto = (props) => {
 		<div>
 			<Avatar
 				width="100%"
+				height="295"
 				onCrop={onCrop}
 				onBeforeFileLoad={onBeforeFileLoad}
-				src={props.src}
+				// src="{props.src}"
 			/>
 			<img src={preview} alt="Preview" />
 			{loading && <LinearProgress />}
