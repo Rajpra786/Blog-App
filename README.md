@@ -27,11 +27,11 @@
 
 ## Live Demo
 
-https://blogger-bhaiya.herokuapp.com
+https://ok-blogger.herokuapp.com/
 
 ## Swagger Documentation
 
-https://blogger-bhaiya.herokuapp.com/doc/
+https://ok-blogger.herokuapp.com/doc/
 
 ## Run on worlds fasted-server: localhost
 
