@@ -38,7 +38,7 @@ https://blogger-bhaiya.herokuapp.com/doc/
 1. Clone the repository
 
 ```sh
-$ git clone https://github.com/Rajpra786/Blog-App.git
+$ git clone -b development https://github.com/Rajpra786/Blog-App.git
 ```
 
 2. Install the dependencies and start the development server
