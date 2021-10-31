@@ -11,8 +11,8 @@ module.exports = (req, res) => {
             description: 'User Email and Password.',
             required: true,
             schema: { 
-                    $email: 'hello@gmail.com',
-                    $password:'12345678'
+						$email: 'hello2@gmail.com',
+						$password:'87654321'
                     }
         } 
     */
