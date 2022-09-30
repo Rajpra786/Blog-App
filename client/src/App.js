@@ -11,6 +11,7 @@ import NoMatch from "./Containers/NoMatch/NoMatch";
 import UpdateBlog from "./Containers/UpdateBlog";
 import BlogById from "./Containers/BlogById";
 import ProfileUpdate from "./Containers/ProfileUpdate";
+import { createBrowserHistory } from "history";
 
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Footer from "./Components/Footer/Footer";
@@ -19,7 +20,17 @@ import ReactGA from 'react-ga';
 const TRACKING_ID = "UA-213624020-2"; // OUR_TRACKING_ID
 ReactGA.initialize(TRACKING_ID);
 
+const history = createBrowserHistory();
+history.listen(location => {
+  ReactGA.set({ page: location.pathname });
+  ReactGA.pageview(location.pathname);
+});
+
 class App extends Component {
+	componentDidMount() {
+		ReactGA.pageview(window.location.pathname);
+	}
+
 	constructor(props) {
 		super(props);
 
@@ -34,7 +45,7 @@ class App extends Component {
 		return (
 			<ThemeContextProvider>
 				<UserContextProvider>
-					<Router>
+					<Router history={history}>
 						<NavBar />
 						<Switch>
 							<Route path="/profile/:id">
