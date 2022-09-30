@@ -15,6 +15,10 @@ import ProfileUpdate from "./Containers/ProfileUpdate";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Footer from "./Components/Footer/Footer";
 
+import ReactGA from 'react-ga';
+const TRACKING_ID = "UA-213624020-2"; // OUR_TRACKING_ID
+ReactGA.initialize(TRACKING_ID);
+
 class App extends Component {
 	constructor(props) {
 		super(props);
