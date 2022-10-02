@@ -15,6 +15,62 @@ import ProfileUpdate from "./Containers/ProfileUpdate";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Footer from "./Components/Footer/Footer";
 
+import history from './utils/history';
+import ReactGA from 'react-ga';
+import ttiPolyfill from 'tti-polyfill';
+
+ReactGA.initialize('UA-213624020-2');
+
+
+ttiPolyfill.getFirstConsistentlyInteractive().then((tti) => {
+	ReactGA.timing({
+		category: "Load Performace",
+		variable: 'Time to Interactive',
+		value: tti
+	})
+});
+
+
+const callback = list => {
+	list.getEntries().forEach(entry => {
+		console.log(entry)
+		ReactGA.timing({
+			category: "First Meaningful Paint",
+			variable: entry.name,
+			value: entry.responseEnd
+		})
+	})
+}
+
+var observer = new PerformanceObserver(callback);
+observer.observe({
+	entryTypes: [
+		'navigation',
+		'paint',
+		'resource',
+		'mark',
+		'measure',
+		'frame',
+		'longtask'
+	]
+})
+
+
+
+
+history.listen((location) => {
+	if (location.pathname.includes('/user')) {
+		let rootURL = location.pathname.split('/')[1]
+		let userPage = location.pathname.split('/')[3]
+
+		let pageHit = `/${rootURL}/${userPage}`
+		ReactGA.pageview(pageHit)
+	} else {
+		ReactGA.set({ page: location.pathname });
+		ReactGA.pageview(location.pathname)
+	}
+});
+
 class App extends Component {
 	constructor(props) {
 		super(props);
