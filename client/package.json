@@ -28,6 +28,7 @@
     "react-router-dom": "^5.3.0",
     "react-scripts": "^4.0.3",
     "react-slick": "^0.28.1",
+    "tti-polyfill": "^0.2.2",
     "web-vitals": "^1.1.2"
   },
   "scripts": {
