@@ -78,7 +78,7 @@ class BlogById extends React.Component {
 					</Grid>
 
 					<Grid container sx={{ display: "flex", flexDirection: "row" }}>
-						<BlogContent content={this.state.content} />
+						<BlogContent content={this.state.content} author={this.state.author} />
 						<RightPanel author={this.state.author} tags={this.state.tags} />
 					</Grid>
 				</Grid>

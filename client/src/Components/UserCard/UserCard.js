@@ -1,7 +1,6 @@
 import React from "react";
 import Get from "../../Requests/Get";
-import { Typography, Avatar, Card, CardContent, Divider } from "@mui/material";
-import { CardBottom } from "./CardBottom";
+import { Typography, Avatar, CardContent, Button, Grid, Paper, Divider } from "@mui/material";
 
 class UserCard extends React.Component {
 	constructor(props) {
@@ -41,32 +40,36 @@ class UserCard extends React.Component {
 
 	render() {
 		return (
-			<Card
+			<Paper
+				elevation={0}
 				sx={{
-					margin: "3vw",
-					width: "18vw",
-					border: "ridge",
+					padding: "1vw",
+					width: { xs: "80vw", sm: "62vw" },
+					height: { xs: "50vw", sm: "4vw" },
+					border: 'none',
+					marginLeft: '5%'
 				}}>
-				<Avatar
-					alt="User Avatar"
-					src={this.state.avatar}
-					sx={{ width: "18vw", height: "19vw" }}
-				/>
-				<CardContent sx={{ textAlign: "center" }}>
-					<Typography component="div" variant="h6">
-						{this.state.name}
-					</Typography>
+				<Divider sx={{ marginBottom: "10px" }} />
+				<Grid container sx={{ display: "flex", direction: { xs: 'column', sm: 'row' } }}>
+					<Avatar
+						alt="User Avatar"
+						src={this.state.avatar}
+						sx={{ width: { xs: "20%", sm: "15%", md: "10%", lg: "7%" }, height: "50%" }}
+					/>
+					<CardContent sx={{ paddingLeft: "2vw", paddingTop: '0.5vw' }}>
+						<Typography component="div" variant="h5">
+							{this.state.name}
+						</Typography>
 
-					<Typography component="div" variant="caption">
-						{this.state.description}
-					</Typography>
-				</CardContent>
-				<Divider />
-				<CardBottom
-					github={this.state.github}
-					twitter={this.state.twitter}
-					website={this.state.website}></CardBottom>
-			</Card>
+						<Typography component="div" variant="body">
+							{this.state.description}
+						</Typography>
+					</CardContent>
+					<Button size="medium" variant="contained" sx={{ display: 'flex', justifyContent: 'right', marginLeft: "2vw", marginTop: '1vw', height: '35px' }}>
+						FOLLOW
+					</Button>
+				</Grid>
+			</Paper>
 		);
 	}
 }

@@ -45,7 +45,7 @@ class App extends Component {
 								<CreatePost />
 							</Route>
 
-							<Route path="/blogs/:id">
+							<Route exact path="/blogs/:id">
 								<BlogById />
 							</Route>
 

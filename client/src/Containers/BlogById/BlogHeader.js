@@ -6,6 +6,7 @@ import { EditButton } from "../../Components/Buttons/Buttons";
 export function BlogHeader(props) {
 	return (
 		<Paper
+			elevation={0}
 			sx={{
 				display: "flex",
 				flexDirection: "column",

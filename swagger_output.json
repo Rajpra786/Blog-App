@@ -2,14 +2,13 @@
   "swagger": "2.0",
   "info": {
     "version": "1.0.0",
-    "title": "Blog API",
+    "title": "Blogger-Bhaiya backend API",
     "description": "This is the documentation for backend server API."
   },
-  "host": "localhost:8081",
+  "host": "blogger-bhaiya.herokuapp.com",
   "basePath": "/",
-  "tags": [],
   "schemes": [
-    "http"
+    "https"
   ],
   "securityDefinitions": {
     "apiKeyAuth": {
@@ -44,11 +43,11 @@
               "properties": {
                 "email": {
                   "type": "string",
-                  "example": "hello@gmail.com"
+                  "example": "hello2@gmail.com"
                 },
                 "password": {
                   "type": "string",
-                  "example": "12345678"
+                  "example": "87654321"
                 }
               },
               "required": [

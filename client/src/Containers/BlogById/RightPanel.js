@@ -1,24 +1,19 @@
 import React from "react";
 import { Paper } from "@mui/material";
-import UserCard from "../../Components/UserCard";
+// import UserCard from "../../Components/UserCard";
 import Recommendations from "../../Components/Recommendations/Recommendations";
 export function RightPanel(props) {
 	return (
 		<Paper
+			elevation={0}
 			sx={{
-				width: "25vw",
+				width: { md: "25vw", xs: "100vw" },
 				maxHeight: "100%",
 				position: "relative",
-				border: "none",
-				display: {
-					md: "block",
-					xs: "none",
-				},
+				border: "none"
 			}}>
-			<div>
-				{props.author && <UserCard id={props.author} />}
-				<Recommendations tags={props.tags} />
-			</div>
+			<Recommendations tags={props.tags} />
+			<Recommendations tags={props.tags} />
 		</Paper>
 	);
 }

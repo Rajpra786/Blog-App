@@ -4,6 +4,7 @@ import { Paper } from "@mui/material";
 export function Poster(props) {
 	return (
 		<Paper
+			elevation={0}
 			sx={{
 				width: "98vw",
 				height: "60vh",
