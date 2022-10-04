@@ -27,8 +27,14 @@ class BlogById extends React.Component {
 	}
 	static contextType = UserContext;
 
-	componentDidMount() {
-		Get("/blogs/" + this.props.match.params.id)
+	componentWillReceiveProps(nextProps) {
+		if (nextProps.location.state === 'desiredState' && nextProps.match.params.id != this.props.match.params.id) {
+			this.updateData(nextProps.match.params.id);
+		}
+	}
+
+	updateData(blogId) {
+		Get("/blogs/" + blogId)
 			.then((res) => {
 				this.setState({
 					title: res.data.title,
@@ -55,6 +61,9 @@ class BlogById extends React.Component {
 						break;
 				}
 			});
+	}
+	componentDidMount() {
+		this.updateData(this.props.match.params.id);
 	}
 
 	render() {

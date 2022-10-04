@@ -37,7 +37,7 @@ const MiniBlogCard = (props) => {
 					secondary={
 						<React.Fragment>
 							<Link
-								to={"/blogs/" + props.id}
+								to={{ pathname: "/blogs/" + props.id, state: "desiredState" }}
 								style={{
 									textDecoration: "none",
 									color: theme.palette.text.primary,
@@ -56,7 +56,8 @@ const MiniBlogCard = (props) => {
 					}
 				/>
 				<ListItemAvatar>
-					<a
+					<Link
+						to={{ pathname: "/blogs/" + props.id, state: "desiredState" }}
 						style={{
 							textDecoration: "none",
 							color: theme.palette.text.primary,
@@ -64,7 +65,7 @@ const MiniBlogCard = (props) => {
 						href={"/blogs/" + props.id}
 					>
 						<Avatar alt="Remy Sharp" src={props.image} variant="square" sx={{ width: 56, height: 56 }} />
-					</a>
+					</Link>
 				</ListItemAvatar>
 			</ListItem>
 		</Box>
