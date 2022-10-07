@@ -28,7 +28,7 @@ class BlogById extends React.Component {
 	static contextType = UserContext;
 
 	componentWillReceiveProps(nextProps) {
-		if (nextProps.location.state === 'desiredState' && nextProps.match.params.id != this.props.match.params.id) {
+		if (nextProps.location.state === 'desiredState' && nextProps.match.params.id !== this.props.match.params.id) {
 			this.updateData(nextProps.match.params.id);
 		}
 	}

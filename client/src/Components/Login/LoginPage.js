@@ -48,7 +48,6 @@ const LoginPage = (props) => {
 				fullWidth
 				sx={{
 					m: 1,
-
 					"& .MuiTextField-root": {
 						margin: theme.spacing(1),
 					},
