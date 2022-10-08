@@ -1,8 +1,29 @@
 const { Blog } = require("../../models/blog");
-const { Comments } = require("../../models/comments");
-const { User } = require("../../models/user");
 
+// async function transform() {
+//     await Blog.find().then(async blogs => {
+//         for (let blog of blogs) {
+//             if (blog._id.toString() !== "6159fde88150df0056cf2df6") {
+//                 let stat = new Stats({
+//                     blogId: blog._id
+//                 })
+//                 await stat.save(async (err, cmt) => {
+//                     blog.stats = cmt._id;
+//                     await blog.save().then(blog => {
+//                         console.log("added to ", blog._id);
+//                     })
+//                 })
+//             }
+//             else {
+//                 console.log("Hello ", blog._id);
+//             }
+//         }
+//     }).catch(err => {
+//         console.log(err);
+//     })
+// }
 
+// how to populate multiple ref objects in mongodb?
 async function getBlogDetails(blogId, result) {
     await Blog
         .findById(blogId)
@@ -11,14 +32,22 @@ async function getBlogDetails(blogId, result) {
             select: "name email description github twitter website avatar blogs",
             populate: {
                 path: "blogs",
-                select: "title description image readTime tags",
+                select: "title description image readTime tags stats",
                 options: {
                     limit: 3,
                     sort: { createdAt: -1 },
+                },
+                populate: {
+                    path: "stats",
+                    select: "approvals reads views likes"
                 }
             }
-        }).
-        then(data => {
+        })
+        .populate({
+            path: "stats",
+            select: "approvals reads views likes"
+        })
+        .then(data => {
             let dataNew = JSON.parse(JSON.stringify(data));
             let { author, ...blogData } = dataNew;
             let { blogs, ...AuthorData } = author;

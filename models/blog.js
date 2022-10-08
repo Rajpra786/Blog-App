@@ -36,6 +36,10 @@ const blogSchema = mongoose.Schema(
 			type: mongoose.Schema.Types.ObjectId,
 			ref: "Comments",
 		},
+		stats: {
+			type: mongoose.Schema.Types.ObjectId,
+			ref: "Stats",
+		},
 		tags: [
 			{
 				type: String,
