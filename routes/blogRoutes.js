@@ -1,10 +1,10 @@
 var router = require("express").Router();
-const auth = require("../../middleware/auth");
-const createBlog = require("./createBlog");
-const getBlogById = require("./getBlogById");
-const getBlogs = require("./getBlogs");
-const updateBlog = require("./updateBlog");
-const getUploadUrl = require("./getUploadUrl");
+const auth = require("../middleware/auth");
+const createBlog = require("../controllers/blogControllers/createBlog");
+const getBlogById = require("../controllers/blogControllers/getBlogById");
+const getBlogs = require("../controllers/blogControllers/getBlogs");
+const updateBlog = require("../controllers/blogControllers/updateBlog");
+const getUploadUrl = require("../controllers/blogControllers/getUploadUrl");
 
 // POST  /api/blogs/new  (Auth)  Create a new blog
 // PUT   /api/blogs/:id   (Auth) Update a blog

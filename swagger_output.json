@@ -577,6 +577,36 @@
           }
         ]
       }
+    },
+    "/api/app/{id}": {
+      "get": {
+        "tags": [
+          "App"
+        ],
+        "summary": "Get Post By Id",
+        "description": "Endpoint get a blog and its related components by blogId. It provides Blog details, its author details, recommandation, related posts",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "503": {
+            "description": "Service Unavailable"
+          }
+        },
+        "security": [
+          {
+            "apiKeyAuth": []
+          }
+        ]
+      }
     }
   },
   "definitions": {

@@ -7,7 +7,7 @@ const expressSession = require("express-session");
 const morgan = require("morgan");
 const path = require("path");
 
-const endpoints = require("./endpoints");
+const endpoints = require("./routes/endpoints");
 const swaggerUi = require("swagger-ui-express");
 const swaggerFile = require("./swagger_output.json");
 
@@ -67,10 +67,10 @@ var options = {
 
 app.use(endpoints);
 app.use("/doc", swaggerUi.serve, swaggerUi.setup(swaggerFile, options));
-app.use(express.static(path.join(__dirname, "client/build")));
-app.get("*", (req, res) => {
-	res.sendFile(path.join(__dirname + "/client/build/index.html"));
-});
+// app.use(express.static(path.join(__dirname, "client/build")));
+// app.get("*", (req, res) => {
+// 	res.sendFile(path.join(__dirname + "/client/build/index.html"));
+// });
 
 // Start Server
 app.listen(PORT, () => {
