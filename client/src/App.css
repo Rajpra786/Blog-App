@@ -32,7 +32,30 @@
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
 }
+
+/* html {
+  overflow-x: hidden;
+}
+
+html,
+body {
+  color: hsl(240, 11%, 15%);
+  margin: 0;
+}
+
+*:not(.material-symbols-rounded, h2.MuiTypography-root, .disableFont) {
+  font-family: "Outfit", sans-serif !important;
+}
+
+.MuiTouchRipple-rippleVisible {
+  animation-duration: 0.25s !important;
+}
+
+.MuiTouchRipple-child {
+  filter: opacity(0.4) !important;
+} */

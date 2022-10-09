@@ -1,14 +1,15 @@
-import {createTheme } from '@mui/material/styles';
+import { createTheme } from '@mui/material/styles';
 
 const lightTheme = createTheme({
 	palette: {
-	  mode: 'light',
+		mode: 'light',
+		navBack: "rgba(250,250,250,.9)"
 	},
 	typography: {
 		fontFamily: [
-		  'Serif'
+			'Serif'
 		].join(','),
-	  }
+	}
 });
 
 export default lightTheme;

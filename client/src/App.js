@@ -14,6 +14,7 @@ import ProfileUpdate from "./Containers/ProfileUpdate";
 
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Footer from "./Components/Footer/Footer";
+//import './App.css'
 
 class App extends Component {
 	constructor(props) {

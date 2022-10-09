@@ -9,6 +9,8 @@ import MenuIcon from "@mui/icons-material/Menu";
 import Login from "../Login/Login";
 import { Link } from "react-router-dom";
 import { UserContext } from "../../Context/UserContext";
+import InfoMsg from "../InfoMsg/InfoMsg";
+import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 
 import {
 	AppBar,
@@ -19,6 +21,8 @@ import {
 	CssBaseline,
 	Drawer,
 	Modal,
+	Button,
+	//Link
 } from "@mui/material";
 
 import DrawerWindow from "./DrawerWindow";
@@ -70,6 +74,46 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 const drawerWidth = 240;
 
+const styles = {
+	button: { textTransform: "none", borderRadius: 4, px: 2 }
+};
+
+const NavLink = (props) => {
+	console.log(props.theme)
+	return (
+		<Link to={props.link} style={{ textDecoration: 'none' }}>
+			<Button
+				size="large"
+				color="inherit"
+				sx={{
+					...styles.button,
+					...(typeof window !== "undefined" &&
+						window.location.pathname === props.link && {
+						background: "rgba(0,0,0,0.15)!important"
+					}),
+					display: { xs: "none", sm: "none", md: "inline-flex" },
+					fontWeight: "bold"
+				}}
+			>
+				<Typography variant="body" style={{ color: props.theme.palette.text.primary }}>
+					{props.name}
+				</Typography>
+			</Button>
+		</Link>
+	)
+}
+
+const navLinks = [
+	{
+		link: "/our-team",
+		name: "Our Team"
+	},
+	{
+		link: "/write",
+		name: "Write"
+	}
+]
+
 const NavBar = (props) => {
 	const { window } = props;
 	const [mobileOpen, setMobileOpen] = React.useState(false);
@@ -116,7 +160,20 @@ const NavBar = (props) => {
 				</Box>
 			</Modal>
 
-			<AppBar position="static">
+			<AppBar position="static"
+				elevation={0}
+				sx={{
+					zIndex: 9999,
+					position: "fixed",
+					top: 0,
+					left: 0,
+					color: "hsl(240, 11%, 25%)",
+					background: theme.palette.navBack,
+					backdropFilter: "blur(15px)",
+					height: "70px",
+					display: "flex",
+					justifyContent: "center",
+				}}>
 				<Toolbar>
 					<IconButton
 						size="large"
@@ -127,11 +184,56 @@ const NavBar = (props) => {
 						sx={{ display: { md: "none", xs: "block" } }}>
 						<MenuIcon />
 					</IconButton>
-					<Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-						<Link to="/" style={{ textDecoration: "none", color: "#36d117" }}>
+
+					<Link to="/" style={{ textDecoration: 'none' }}>
+						<Typography
+							variant="h6"
+							component="div"
+							sx={{
+								cursor: "pointer",
+								"&:hover": { textDecoration: "underline" },
+								"&:active": { opacity: 0.7 },
+								mr: 3,
+								fontWeight: "600",
+							}}
+							style={{ color: theme.palette.text }}
+						>
 							Blogger Bhaiya
-						</Link>
-					</Typography>
+						</Typography>
+					</Link>
+					<Box sx={{
+						flexGrow: 1,
+						ml: 3
+					}}>
+						{
+							navLinks.map((val, index) => {
+								return <NavLink name={val.name} link={val.link} key={index} theme={theme} />
+							})
+						}
+					</Box>
+
+					<Button
+						onClick={login}
+						target="_blank"
+						size="large"
+						color="inherit"
+						sx={{
+							...styles.button,
+							background: "rgba(0,0,0,.1)",
+							"&:hover": {
+								background: "rgba(0,0,0,.2)"
+							}
+						}}
+					>
+						<Box sx={{ display: { xs: "none", sm: "inline-block" } }}>
+							Continue&nbsp;to&nbsp;my&nbsp;account
+						</Box>
+						<Box sx={{ display: { xs: "inline-block", sm: "none" } }}>
+							Sign&nbsp;in
+						</Box>
+
+						<KeyboardArrowRightIcon sx={{ ml: "5px" }} />
+					</Button>
 
 					<Search>
 						<SearchIconWrapper>
@@ -142,6 +244,7 @@ const NavBar = (props) => {
 							inputProps={{ 'aria-label': 'search' }}
 						/>
 					</Search>
+
 					<div style={{ display: "flex", flexDirection: "row" }}>
 						<IconButton
 							size="large"
@@ -165,19 +268,19 @@ const NavBar = (props) => {
 							)}
 						</IconButton>
 
-						<MenuBar
+						{/* <MenuBar
 							anchorEl={anchorEl}
 							text={theme.palette.text}
 							isAuth={isAuth}
 							userId={userId}
 							logout={logout}
 							login={login}
-							handleClose={handleClose}></MenuBar>
+							handleClose={handleClose}></MenuBar> */}
 					</div>
 				</Toolbar>
+				<InfoMsg msg="This is a sample msg! Lets see what we can do?" />
 			</AppBar>
 			<CssBaseline />
-
 			<Box component="nav" aria-label="mailbox folders">
 				<Drawer
 					container={container}

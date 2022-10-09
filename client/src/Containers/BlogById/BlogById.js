@@ -70,7 +70,7 @@ class BlogById extends React.Component {
 		const { isAuth, userId } = this.context;
 		return (
 			<div>
-				<Grid container sx={{ display: "flex", flexDirection: "column" }}>
+				<Grid container sx={{ display: "flex", flexDirection: "column", mb: 10, mt: 10 }}>
 					<Grid container sx={{ display: "flex", flexDirection: "column" }}>
 						<BlogHeader
 							title={this.state.title}

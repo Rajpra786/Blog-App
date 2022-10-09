@@ -297,6 +297,11 @@
             "name": "maxcount",
             "in": "query",
             "type": "string"
+          },
+          {
+            "name": "lastDate",
+            "in": "query",
+            "type": "string"
           }
         ],
         "responses": {

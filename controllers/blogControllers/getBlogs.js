@@ -4,36 +4,36 @@ module.exports = async (req, res) => {
 	/*
 		#swagger.tags = ['Blog']
 		#swagger.summary = 'Get All blogs'
-        #swagger.description = 'Endpoint to get all blogs based on query parameters'
+		#swagger.description = 'Endpoint to get all blogs based on query parameters'
 		
 		#swagger.parameters['tag'] = {
-            in: 'query',
-            description: 'blog tag',
-            schema: { 
+			in: 'query',
+			description: 'blog tag',
+			schema: { 
 						$tag:'science-and-space' 
-                    }
-        }
+					}
+		}
 		
 		#swagger.parameters['max count'] = {
-            in: 'query',
-            description: 'Maximum number of elements that need to be returned',
-            schema: { 
+			in: 'query',
+			description: 'Maximum number of elements that need to be returned',
+			schema: { 
 						$maxcount:3 
-                    }
-        }
+					}
+		}
 
 		#swagger.parameters['sort'] = {
-            in: 'query',
-            description: 'Sort or Not sorted',
-            schema: { 
+			in: 'query',
+			description: 'Sort or Not sorted',
+			schema: { 
 						$sort:true 
-                    }
-        }
+					}
+		}
 
 
 		#swagger.security = [{
-               "apiKeyAuth": []
-        }]
+			   "apiKeyAuth": []
+		}]
 	*/
 
 	var blogs = [];
@@ -44,12 +44,17 @@ module.exports = async (req, res) => {
 	}
 
 	if (req.query.sort) {
-		filters.sort = { updatedAt: "asc" };
+		filters.sort = { updatedAt: 1 };
 	}
 
 	if (req.query.tag) {
 		query.tags = { $in: req.query.tag };
 	}
+
+	if (req.query.lastDate) {
+		query.updatedAt = { $gt: new Date(req.query.lastDate) }
+	}
+
 	await Blog.find(
 		query,
 		"author readTime title description image tags updatedAt",

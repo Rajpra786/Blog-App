@@ -119,9 +119,10 @@ class BlogsList extends React.Component {
 											<Grid key={value._id + this.state.category + index} item>
 												<Paper
 													key={value._id + this.state.category}
+													elevation={0}
 													sx={{
 														height: 250,
-														width: 550,
+														width: 800,
 														"@media (max-width:780px)": {
 															width: 370,
 															height: 180,
