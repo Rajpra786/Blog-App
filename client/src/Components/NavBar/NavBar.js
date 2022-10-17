@@ -22,11 +22,9 @@ import {
 	Drawer,
 	Modal,
 	Button,
-	//Link
 } from "@mui/material";
 
 import DrawerWindow from "./DrawerWindow";
-import { MenuBar } from "./MenuBar";
 import { styled, alpha } from '@mui/material/styles';
 import InputBase from '@mui/material/InputBase';
 import SearchIcon from '@mui/icons-material/Search';

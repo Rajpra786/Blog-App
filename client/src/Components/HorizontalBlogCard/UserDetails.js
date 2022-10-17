@@ -14,7 +14,7 @@ export function UserDetails(props) {
 			}}>
 			<CardHeader
 				avatar={<Avatar aria-label="recipe" src={props.avatar} />}
-				title={props.author}
+				title={<Typography variant="body2" sx={{ fontWeight: "bold" }}>{props.author}</Typography>}
 				subheader={
 					<Box
 						sx={{
@@ -23,7 +23,7 @@ export function UserDetails(props) {
 							pr: 1,
 							pb: 1,
 						}}>
-						<Typography variant="body1">{props.date}</Typography>
+						<Typography variant="body2">{props.date}</Typography>
 						<AccessTimeFilledOutlinedIcon
 							sx={{
 								pl: 1,

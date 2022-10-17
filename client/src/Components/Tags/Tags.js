@@ -1,9 +1,6 @@
 import React from 'react';
 import { useTheme } from "@mui/material/styles";
-import EditIcon from '@mui/icons-material/Edit';
-import { Box, Button, Chip } from '@mui/material';
-import { Link } from 'react-router-dom';
-
+import { Box, Chip } from '@mui/material';
 
 const Tags = props => {
     const theme = useTheme();
@@ -11,11 +8,10 @@ const Tags = props => {
     return <Box sx={{
         display: 'flex',
         flexWrap: 'wrap',
-        width: 500,
+        width: "100%",
         p: 1,
-        height: "50px",
-        alignContent: 'center',
-        border: "3px"
+        height: "30vh",
+        alignContent: 'center'
     }}>
         {
             props.tags.map((val, index) => {

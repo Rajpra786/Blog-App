@@ -2,40 +2,57 @@ import React from "react";
 import { Paper, Typography, Grid, Box } from "@mui/material";
 import dateFormat from "dateformat";
 import Get from "../../Requests/Get";
-import VerticalBlogCard from "../VerticalBlogCard/VerticalBlogCard";
 import HorizontalBlogCard from "../HorizontalBlogCard/HorizontalBlogCard";
 import { getTitle } from "./getTitle";
+import InfiniteScroll from "react-infinite-scroll-component";
 
 class BlogsList extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
 			loaded: false,
-			maximumBlogs: props.maximumBlogs ? props.maximumBlogs : -1,
+			stepSize: 5,
+			hasMore: true,
+			lastDate: new Date().toISOString(),
 			category: props.category,
-			blogs: props.maximumBlogs
-				? Array.from(Array(props.maximumBlogs).keys())
-				: Array.from(Array(10).keys()),
+			blogs: Array.from(Array(5).keys()),
 		};
 	}
 
-	componentDidMount() {
+	getBlogs() {
+		console.log({ "State Details": this.state });
+		if (this.state.blogs.length >= 20) {
+			this.setState({ hasMore: false });
+			return;
+		}
 		let url = this.state.category
 			? "/blogs/?tag=" + this.state.category
 			: "/blogs/";
 
-		if (this.state.maximumBlogs > 0) {
-			if (url === "/blogs/") {
-				url += "?maxcount=" + this.state.maximumBlogs;
-			} else url += "&maxcount=" + this.state.maximumBlogs;
-		}
+		if (url === "/blogs/") {
+			url += "?maxcount=" + this.state.stepSize;
+		} else url += "&maxcount=" + this.state.stepSize;
+
+		url += "&lastDate=" + this.state.lastDate;
 
 		Get(url)
 			.then((res) => {
-				this.setState({
-					blogs: res.blogs,
-					loaded: true,
-				});
+				if (this.state.loaded) {
+					this.setState({
+						blogs: [...this.state.blogs, ...res.blogs],
+						loaded: true,
+						lastDate: res.blogs?.slice(-1)[0]?.updatedAt
+					});
+
+					console.log({ "data": res.blogs, "last": res.blogs?.slice(-1), "lastDate": res.blogs?.slice(-1)[0]?.updatedAt });
+				}
+				else {
+					this.setState({
+						blogs: res.blogs,
+						loaded: true,
+					});
+				}
+				console.log({ "State: ": this.state });
 			})
 			.catch((err) => {
 				console.log("Error in BlogsList.js");
@@ -43,16 +60,17 @@ class BlogsList extends React.Component {
 			});
 	}
 
+	componentDidMount() {
+		this.getBlogs();
+	}
+
 	render() {
 		return (
 			<div>
 				<Box
 					sx={{
-						width: "90vw",
+						width: "100%",
 						m: "auto",
-						"@media (max-width:780px)": {
-							width: "95vw",
-						},
 					}}>
 					{this.state.category && (
 						<Typography variant="h2" sx={{ p: "2vw" }}>
@@ -62,42 +80,53 @@ class BlogsList extends React.Component {
 
 					{/* vertical cards */}
 					{this.props.type !== "horizontal" && (
-						<Grid sx={{ flexGrow: 1, pt: "2vw" }} container spacing={2}>
-							<Grid item xs={12}>
+						<Grid sx={{ pt: "2vw" }} container spacing={4}>
+							<Grid item>
 								<Grid container justifyContent="center" spacing={2}>
-									{!this.state.loaded &&
-										this.state.blogs.map((value, index) => (
-											<Grid key={value + this.state.category + index} item>
-												<Paper sx={{ height: 400, width: 320 }}></Paper>
-											</Grid>
-										))}
+									<InfiniteScroll
+										dataLength={this.state.blogs.length}
+										next={() => { this.getBlogs() }}
+										hasMore={this.state.hasMore}
+										loader={<h4>Loading...</h4>}
+										//height={400}
+										endMessage={
+											<p style={{ textAlign: "center" }}>
+												<b>Yay! You have seen it all</b>
+											</p>
+										}
+									>
+										{!this.state.loaded &&
+											this.state.blogs.map((value, index) => (
+												<Grid key={value + this.state.category + index} item>
+													<Paper sx={{ height: 400, width: 320 }}></Paper>
+												</Grid>
+											))}
 
-									{this.state.loaded &&
-										this.state.blogs.map((value, index) => (
-											<Grid key={value._id + this.state.category + index} item>
-												<Paper
-													key={value._id + this.state.category}
-													sx={{ height: 400, width: 320 }}>
-													<VerticalBlogCard
-														url={"/blogs/" + value._id}
-														title={value.title}
-														description={
-															value.description.length > 50
-																? value.description.substring(0, 50) + "..."
-																: value.description
-														}
-														avatar={value.author?.avatar}
-														author={value.author.name}
-														date={dateFormat(value.updatedAt, "mmmm dS, yyyy")}
-														readTime={
-															value.readTime ? value.readTime + " min" : "2 min"
-														}
-														userUrl={"/profile/" + value.author._id}
-														poster={value.image}
-													/>
-												</Paper>
-											</Grid>
-										))}
+										{this.state.loaded &&
+											this.state.blogs.map((value, index) => (
+												<div>
+													<Box sx={{ mb: 1, mt: 1 }}>
+														<HorizontalBlogCard
+															url={"/blogs/" + value._id}
+															title={value.title}
+															description={
+																value.description.length > 50
+																	? value.description.substring(0, 50) + "..."
+																	: value.description
+															}
+															avatar={value.author?.avatar}
+															author={value.author.name}
+															date={dateFormat(value.updatedAt, "mmmm dS, yyyy")}
+															readTime={
+																value.readTime ? value.readTime + " min" : "2 min"
+															}
+															authorUrl={"/profile/" + value.author._id}
+															poster={value.image}
+														/>
+													</Box>
+												</div>
+											))}
+									</InfiniteScroll>
 								</Grid>
 							</Grid>
 						</Grid>
@@ -137,7 +166,7 @@ class BlogsList extends React.Component {
 																: value.description
 														}
 														avatar={value.author?.avatar}
-														author={value.author.name}
+														author={value.author?.name}
 														date={dateFormat(value.updatedAt, "mmmm dS, yyyy")}
 														readTime={
 															value.readTime ? value.readTime + " min" : "2 min"

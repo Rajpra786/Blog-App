@@ -4,8 +4,7 @@ import {
   Box,
   Collapse,
   Alert,
-  Typography,
-  Toolbar
+  Typography
 } from "@mui/material";
 import CloseIcon from '@mui/icons-material/Close';
 

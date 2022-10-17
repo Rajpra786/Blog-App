@@ -44,7 +44,7 @@ module.exports = async (req, res) => {
 	}
 
 	if (req.query.sort) {
-		filters.sort = { updatedAt: 1 };
+		filters.sort = { updatedAt: -1 };
 	}
 
 	if (req.query.tag) {
@@ -52,7 +52,7 @@ module.exports = async (req, res) => {
 	}
 
 	if (req.query.lastDate) {
-		query.updatedAt = { $gt: new Date(req.query.lastDate) }
+		query.updatedAt = { $lt: new Date(req.query.lastDate) }
 	}
 
 	await Blog.find(

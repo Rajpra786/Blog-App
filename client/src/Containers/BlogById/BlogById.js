@@ -8,6 +8,7 @@ import { BlogHeader } from "./BlogHeader";
 import { Poster } from "./Poster";
 import { BlogContent } from "./BlogContent";
 import { RightPanel } from "./RightPanel";
+import ActionButtons from "./../../Components/ActionButtons";
 
 class BlogById extends React.Component {
 	constructor(props) {
@@ -23,6 +24,7 @@ class BlogById extends React.Component {
 			tags: [],
 			lastUpdated: "",
 			readTime: "",
+			atBottom: false,
 		};
 	}
 	static contextType = UserContext;
@@ -86,10 +88,11 @@ class BlogById extends React.Component {
 						<Poster poster={this.state.poster} />
 					</Grid>
 
-					<Grid container sx={{ display: "flex", flexDirection: "row" }}>
+					<Grid container sx={{ display: "flex", flexDirection: "row" }} ref={this.paneDidMount}>
 						<BlogContent content={this.state.content} author={this.state.author} />
 						<RightPanel author={this.state.author} tags={this.state.tags} />
 					</Grid>
+					<ActionButtons />
 				</Grid>
 			</div>
 		);

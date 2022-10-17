@@ -6,6 +6,8 @@ const ImageUpload = (file) => {
       reject("File type is not supported!");
     }
 
+    //compress image
+
     //get url to upload image from s3
     fetch("/api/blogs/image/new/" + file.name)
       .then(res => res.json())

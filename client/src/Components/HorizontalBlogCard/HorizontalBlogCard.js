@@ -10,23 +10,16 @@ const CardStyle = {
 	paddingLeft: "1vw",
 	paddingRight: "1vw",
 	paddingBottom: "0vh",
-	width: 900,
+	width: "100%",
 	height: 200,
 	overflow: "hidden",
 	position: "relative",
 	border: "none",
+	boxShadow: "none",
 	borderRadius: "2vh",
-	"&:hover": {
-		boxShadow: "0 1vh 2vh 0px rgba(0, 0, 0, 0.4)",
-		transform: "scale(1.04)",
-	},
 	"&:active": {
 		transform: "scale(1.01) translateY(0.5vh)",
-	},
-	"@media (max-width:780px)": {
-		width: 370,
-		height: 180,
-	},
+	}
 };
 
 const HorizontalBlogCard = (props) => {
@@ -37,23 +30,9 @@ const HorizontalBlogCard = (props) => {
 			to={props.url}
 			style={{ textDecoration: "none", color: theme.palette.text.primary }}>
 			<Card sx={CardStyle}>
-				<CardMedia
-					sx={{
-						width: "15vw",
-						margin: "1vh",
-						borderRadius: "1.5vh",
-						"@media (max-width:780px)": {
-							width: "25vw",
-							margin: "0.5vh",
-						},
-					}}
-					component="img"
-					image={props.poster}
-					alt="green iguana"
-				/>
-				<Box sx={{ display: "flex", flexDirection: "column" }}>
-					<CardContent sx={{ padding: "2vh !important", flex: "1 0 auto" }}>
-						<Typography variant="h6">{props.title}</Typography>
+				<Box sx={{ display: "flex", flexDirection: "column", width: "75%" }}>
+					<CardContent sx={{ padding: "2vh !important" }}>
+						<Typography variant="h5" sx={{ fontWeight: 'bold' }}>{props.title}</Typography>
 
 						<Typography
 							variant="body1"
@@ -70,6 +49,8 @@ const HorizontalBlogCard = (props) => {
 						style={{
 							textDecoration: "none",
 							color: theme.palette.text.primary,
+							bottom: "3px",
+							position: "absolute"
 						}}>
 						<UserDetails
 							author={props.author}
@@ -78,6 +59,21 @@ const HorizontalBlogCard = (props) => {
 							readTime={props.readTime}></UserDetails>
 					</Link>
 				</Box>
+				<CardMedia
+					sx={{
+						width: "22%",//{ xs: 200, sm: 250, md: 200 },
+						margin: "1vh",
+						borderRadius: "1.5vh",
+						display: "flex",
+						height: 150
+					}}
+					component="img"
+					image={props.poster}
+					alt="green iguana"
+				/>
+				{/* <Grid container justifyContent="flex-end">
+
+				</Grid> */}
 			</Card>
 		</Link>
 	);
